@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<% if @departments.empty? %>
+  <p>No Departments found.</p>
+<% else %>
+
+<h1>Listing Departments</h1>
+
+<table border = "1">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @departments.each_with_index do |department, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= department.name %></td>
+        <td><%= link_to 'Show', department %></td>
+        <td><%= link_to 'Edit', edit_department_path(department) %></td>
+        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% end %>
+
+<%= link_to 'New Department', new_department_path %>
