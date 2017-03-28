@@ -1,6 +1,8 @@
 class FeedbackFormsController < ApplicationController
   before_action :set_feedback_form, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!
+
   # GET /feedback_forms
   # GET /feedback_forms.json
   def index
@@ -69,6 +71,6 @@ class FeedbackFormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_form_params
-      params.require(:feedback_form).permit(:name, :register_number, :workshop_id)
+      params.require(:feedback_form).permit(:name, :register_number, :workshop_id, answers_attributes:[:question_id, :feedback_form_id, :feedback])
     end
 end

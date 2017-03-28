@@ -1,6 +1,8 @@
 class InstructorsController < ApplicationController
   before_action :set_instructor, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!
+
   # GET /instructors
   # GET /instructors.json
   def index
@@ -69,6 +71,6 @@ class InstructorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def instructor_params
-      params.require(:instructor).permit(:name, :mobile, :email, :address, :profile, :department_id)
+      params.require(:instructor).permit(:name, :mobile, :email, :address, :profile, department_ids: [])
     end
 end

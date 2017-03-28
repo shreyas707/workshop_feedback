@@ -27,7 +27,9 @@
 
 <p>
   <strong>Department:</strong>
-  <%= @instructor.department_id %>
+  <% @instructor.departments.each do |department| %>
+    <%= department.name %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_instructor_path(@instructor) %> |

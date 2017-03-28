@@ -10,6 +10,10 @@ class WorkshopsController < ApplicationController
   # GET /workshops/1
   # GET /workshops/1.json
   def show
+    @feedback_form = FeedbackForm.new
+    @question_type_1 = Question.where('question_type_id = ?', 1)
+    @question_type_2 = Question.where('question_type_id = ?', 2)
+    @answer = Answer.new
   end
 
   # GET /workshops/new
@@ -69,6 +73,6 @@ class WorkshopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workshop_params
-      params.require(:workshop).permit(:title, :description, :start_date, :end_date, :token, :user_id, :department_id, :allow_access)
+      params.require(:workshop).permit(:title, :description, :start_date, :end_date, :token, :user_id, :department_id, :allow_access, instructor_ids: [], department_ids: [])
     end
 end

@@ -20,8 +20,8 @@
     <%= f.text_field :register_number %>
   </div>
   <div class="field">
-    <%= f.label :workshop_id %><br>
-    <%= f.number_field :workshop_id %>
+    <%= f.label :workshop %>
+    <%= f.collection_select :workshop_id, Workshop.all, :id, :title, prompt: "Select Workshop" %>
   </div>
   <div class="actions">
     <%= f.submit %>

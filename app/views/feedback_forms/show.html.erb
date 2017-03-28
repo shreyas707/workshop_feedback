@@ -12,8 +12,14 @@
 
 <p>
   <strong>Workshop:</strong>
-  <%= @feedback_form.workshop_id %>
+  <%= @feedback_form.workshop.title %>
 </p>
+
+<ul>
+<% Question.all.each do |question| %>
+	<li><%= question.title %> - <%= question.answers.find_by_feedback_form_id(@feedback_form.id).try(:feedback) %>
+<% end %>
+</ul>
 
 <%= link_to 'Edit', edit_feedback_form_path(@feedback_form) %> |
 <%= link_to 'Back', feedback_forms_path %>

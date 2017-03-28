@@ -17,7 +17,7 @@
       <tr>
         <td><%= feedback_form.name %></td>
         <td><%= feedback_form.register_number %></td>
-        <td><%= feedback_form.workshop_id %></td>
+        <td><%= feedback_form.workshop.title %></td>
         <td><%= link_to 'Show', feedback_form %></td>
         <td><%= link_to 'Edit', edit_feedback_form_path(feedback_form) %></td>
         <td><%= link_to 'Destroy', feedback_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>

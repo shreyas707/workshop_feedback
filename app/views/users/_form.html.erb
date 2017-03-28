@@ -1,0 +1,41 @@
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<h4>These errors prohitibted the form from being saved: </h4>
+		<ul style = "color:red;">
+			<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<label>Username</label>
+	<%= f.text_field :username %>
+	<br/><br/>
+
+	<label>Email</label>
+	<%= f.text_field :email %>
+	<br/><br/>
+
+	<label>Password</label>
+	<%= f.password_field :password %>
+	<br/><br/>
+
+	<label>Re-enter Password</label>
+	<%= f.password_field :password_confirmation %>
+	<br/><br/>
+
+	<label>User Role</label><br/>
+	<%= f.radio_button :role, "admin" %> Admin
+	<%= f.radio_button :role, "user" %> User
+	<br/><br/>
+
+  	<div class="field">
+    <%= f.label :department_id %>
+    <%= f.collection_check_boxes :department_id, Department.all, :id, :name do |b| %><br/><br/>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
+  </div>
+
+	<%= f.submit 'Submit' %>
+<% end %>

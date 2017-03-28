@@ -16,8 +16,8 @@
     <%= f.text_area :feedback %>
   </div>
   <div class="field">
-    <%= f.label :question_id %><br>
-    <%= f.number_field :question_id %>
+    <%= f.label :question %>
+    <%= f.collection_select :question_id, Question.all, :id, :title, prompt: "Select Question" %>
   </div>
   <div class="field">
     <%= f.label :feedback_form_id %><br>

@@ -20,8 +20,8 @@
     <%= f.number_field :order %>
   </div>
   <div class="field">
-    <%= f.label :question_type_id %><br>
-    <%= f.number_field :question_type_id %>
+    <%= f.label :question_type %>
+    <%= f.collection_select :question_type_id, QuestionType.all, :id, :name, prompt: "Select Question Type" %>
   </div>
   <div class="actions">
     <%= f.submit %>

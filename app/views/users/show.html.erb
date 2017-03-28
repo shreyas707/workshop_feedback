@@ -1,0 +1,21 @@
+<p>User ID: <%= @user.id %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user.id) %>
+<%= link_to "Delete", users_path(@user.id), data: {method: :delete, confirm: "Are you sure you want to delete?"} %>
+<%= link_to 'Back', users_path %>

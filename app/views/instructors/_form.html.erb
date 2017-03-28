@@ -32,8 +32,11 @@
     <%= f.text_field :profile %>
   </div>
   <div class="field">
-    <%= f.label :department_id %><br>
-    <%= f.number_field :department_id %>
+    <%= f.label :department_id %>
+    <%= f.collection_check_boxes :department_ids, Department.all, :id, :name do |b| %><br/><br/>
+        <%= b.check_box %>
+        <%= b.label %>
+      <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

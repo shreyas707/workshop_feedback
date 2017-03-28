@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @workshop.title %>
-</p>
+<h2><%= @workshop.title %></h2>
 
 <p>
   <strong>Description:</strong>
@@ -25,14 +22,23 @@
   <%= @workshop.token %>
 </p>
 
-<p>
-  <strong>User:</strong>
+<!-- <p>
+  <strong>Created by:</strong>
   <%= @workshop.user_id %>
-</p>
+</p> -->
 
 <p>
   <strong>Department:</strong>
-  <%= @workshop.department_id %>
+  <% @workshop.departments.each do |department| %>
+    <%= department.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Instructor:</strong>
+  <% @workshop.instructors.each do |instructor| %>
+    <%= instructor.name %>
+  <% end %>
 </p>
 
 <p>
@@ -42,3 +48,43 @@
 
 <%= link_to 'Edit', edit_workshop_path(@workshop) %> |
 <%= link_to 'Back', workshops_path %>
+
+<br/><br/>
+<h2>Feedback Form</h2>
+
+<%= form_for @feedback_form do |f| %>
+
+  <%= f.hidden_field :workshop_id, value: @workshop.id %>
+
+  <label>Name: </label>
+  <%= f.text_field :name %><br/><br/>
+
+  <label>Register Number:</label>
+  <%= f.text_field :register_number %>
+
+  <br/><br/><br/>
+  
+  <% @question_type_1.each do |question| %>
+    <br/><%= question.title %>
+    <%= f.fields_for :answers, @answer do |question_form| %>
+      <%= question_form.radio_button :feedback, "strongly-disagree" %>Strongly Disagree
+      <%= question_form.radio_button :feedback, "disagree" %>Disagree
+      <%= question_form.radio_button :feedback, "agree" %>Agree
+      <%= question_form.radio_button :feedback, "strongly-agree" %>Strongly Agree
+      <%= question_form.hidden_field :question_id, value: question.id %> 
+    <% end %> 
+    <br/>
+  <% end %>
+
+  <% @question_type_2.each do |question| %>
+    <br/><%= question.title %>
+    <%= f.fields_for :answers, @answer do |question_form| %>
+      <%= question_form.text_area :feedback %>
+      <%= question_form.hidden_field :question_id, value: question.id %>
+    <% end %>
+  <% end %>
+
+  <br/><br/>
+  <%= f.submit %>
+
+<% end %>

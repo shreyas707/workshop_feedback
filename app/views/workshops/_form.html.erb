@@ -31,13 +31,23 @@
     <%= f.label :token %><br>
     <%= f.text_field :token %>
   </div>
+ <!-- <div class="field">
+    <%#= f.label :user_id %><br>
+    <%#= f.number_field :user_id %>
+  </div> -->
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :department_id %>
+    <%= f.collection_check_boxes :department_ids, Department.all, :id, :name do |b| %><br/><br/>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
   </div>
   <div class="field">
-    <%= f.label :department_id %><br>
-    <%= f.number_field :department_id %>
+    <%= f.label :instructor_id %>
+    <%= f.collection_check_boxes :instructor_ids, Instructor.all, :id, :name do |b| %><br/><br/>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :allow_access %><br>
