@@ -18,38 +18,37 @@
 </p>
 
 <p>
-  <strong>Token:</strong>
-  <%= @workshop.token %>
-</p>
-
-<!-- <p>
-  <strong>Created by:</strong>
-  <%= @workshop.user_id %>
-</p> -->
-
-<p>
-  <strong>Department:</strong>
+  <strong>Departments:</strong>
   <% @workshop.departments.each do |department| %>
-    <%= department.name %>
+    <%= department.name %>,
   <% end %>
 </p>
 
 <p>
   <strong>Instructor:</strong>
   <% @workshop.instructors.each do |instructor| %>
-    <%= instructor.name %>
+    <%= instructor.name %>,
   <% end %>
 </p>
 
-<p>
-  <strong>Allow access:</strong>
-  <%= @workshop.allow_access %>
-</p>
+<% if current_user.try(:is_admin? || :is_user?) %>
+  <p>
+    <strong>Allow access:</strong>
+    <%= @workshop.allow_access %>
+  </p>
 
-<%= link_to 'Edit', edit_workshop_path(@workshop) %> |
-<%= link_to 'Back', workshops_path %>
+  <p>
+    <strong>Token:</strong>
+    <%= @workshop.token %>
+  </p>
+<% end %>
 
-<br/><br/>
+<% if current_user.try(:is_admin? || :is_user?) %>
+  <%= link_to 'Edit', edit_workshop_path(@workshop) %> |
+  <%= link_to 'Back', workshops_path %>
+<% end %>
+
+<br/>
 <h2>Feedback Form</h2>
 
 <%= form_for @feedback_form do |f| %>
@@ -62,10 +61,16 @@
   <label>Register Number:</label>
   <%= f.text_field :register_number %>
 
-  <br/><br/><br/>
+  <br/><br/>
+  <%= form_for(@workshop) do |f| %>
+    <div class="field">
+      <strong>Token:</strong>
+      <%= f.text_field :token %>
+    </div>
+  <% end %>
   
   <% @question_type_1.each do |question| %>
-    <br/><%= question.title %>
+    <br/><%= question.order %>. <%= question.title %>
     <%= f.fields_for :answers, @answer do |question_form| %>
       <%= question_form.radio_button :feedback, "strongly-disagree" %>Strongly Disagree
       <%= question_form.radio_button :feedback, "disagree" %>Disagree
@@ -77,7 +82,7 @@
   <% end %>
 
   <% @question_type_2.each do |question| %>
-    <br/><%= question.title %>
+    <br/><%= question.order %>. <%= question.title %>
     <%= f.fields_for :answers, @answer do |question_form| %>
       <%= question_form.text_area :feedback %>
       <%= question_form.hidden_field :question_id, value: question.id %>
@@ -85,6 +90,5 @@
   <% end %>
 
   <br/><br/>
-  <%= f.submit %>
-
+    <%= f.submit %>
 <% end %>
