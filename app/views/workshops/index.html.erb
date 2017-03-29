@@ -2,34 +2,33 @@
 
 <h1>Listing Workshops</h1>
 
-<table>
+<table class="mdl-data-table mdl-js-data-table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
+      <th class="mdl-data-table__cell--non-numeric">Title</th>
+      <th class="mdl-data-table__cell--non-numeric">Description</th>
+      <th class="mdl-data-table__cell--non-numeric">Start date</th>
+      <th class="mdl-data-table__cell--non-numeric">End date</th>
       <% if current_user.try(:is_admin? || :is_user?) %>
-        <th>Token</th>
-        <th>Allow access</th>
+        <th class="mdl-data-table__cell--non-numeric">Token</th>
+        <th class="mdl-data-table__cell--non-numeric">Allow access</th>
       <% end %>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @workshops.each do |workshop| %>
       <tr>
-        <td><%= link_to workshop.title, workshop %></td>
-        <td><%= workshop.description %></td>
-        <td><%= workshop.start_date %></td>
-        <td><%= workshop.end_date %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to workshop.title, workshop %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= workshop.description %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= workshop.start_date %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= workshop.end_date %></td>
         <% if current_user.try(:is_admin? || :is_user?) %>
-          <td><%= workshop.token %></td>
-          <td><%= workshop.allow_access %></td>
-          <td><%= link_to 'Show', workshop %></td>
-          <td><%= link_to 'Edit', edit_workshop_path(workshop) %></td>
-          <td><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= workshop.token %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= workshop.allow_access %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', workshop, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_workshop_path(workshop), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' }, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ef5350" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -39,5 +38,5 @@
 <br>
 
 <% if current_user.try(:is_admin? || :is_user?) %>
-  <%= link_to 'New Workshop', new_workshop_path %>
+  <%= link_to 'New Workshop', new_workshop_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
 <% end %>

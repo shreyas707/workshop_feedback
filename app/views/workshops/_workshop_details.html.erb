@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @workshop.title %></h2>
+
+<p>
+  <strong>Description:</strong>
+  <%= @workshop.description %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @workshop.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @workshop.end_date %>
+</p>
+
+<p>
+  <strong>Departments:</strong>
+  <% @workshop.departments.each do |department| %>
+    <%= department.name %>,
+  <% end %>
+</p>
+
+<p>
+  <strong>Instructor:</strong>
+  <% @workshop.instructors.each do |instructor| %>
+    <%= instructor.name %>,
+  <% end %>
+</p>
+
+<% if current_user.try(:is_admin? || :is_user?) %>
+  <p>
+    <strong>Allow access:</strong>
+    <%= @workshop.allow_access %>
+  </p>
+
+  <p>
+    <strong>Token:</strong>
+    <%= @workshop.token %>
+  </p>
+<% end %>
+
+<% if current_user.try(:is_admin? || :is_user?) %>
+  <%= link_to 'Edit', edit_workshop_path(@workshop), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %> |
+  <%= link_to 'Back', workshops_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b0bec5" %>
+<% end %>
+
+<br/>
+</div>
