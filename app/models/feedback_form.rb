@@ -5,7 +5,7 @@ class FeedbackForm < ActiveRecord::Base
 
 	accepts_nested_attributes_for :answers
 
-	validates_presence_of :name
+	validates_presence_of :name, :register_number
 
 	validate :check_token
 
