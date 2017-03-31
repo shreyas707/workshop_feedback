@@ -31,7 +31,7 @@
   <% end %>
 </p>
 
-<% if current_user.try(:is_admin?) ||  %>
+<% if current_user.try(:is_user?) || current_user.try(:is_admin?)  %>
   <p>
     <strong>Allow access:</strong>
     <%= @workshop.allow_access %>
