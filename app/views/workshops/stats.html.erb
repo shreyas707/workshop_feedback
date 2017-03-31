@@ -1,3 +1,4 @@
+<section class="workshop-pie">
 <h2>Stats of <%= @workshop.title %></h2>
 
 <% if user_signed_in? && (current_user.is_admin? || current_user.is_user?) %>
@@ -8,7 +9,6 @@
   <tbody>
 
     <tr>
-      <th scope="row">1</th>
       <td width="40%"><strong><%#= question.order%><%= question.title %></strong></td>
 
       <td width="60%">
@@ -29,10 +29,11 @@
     
   <% end %>
 <% end %>
-
+<div class="pie-button">
 <%= link_to "Export to Excel", workshops_stats_path(format: "xls"), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #009688" %>
 <br/><br/>
-
+</div>
+</section>
 
 
 

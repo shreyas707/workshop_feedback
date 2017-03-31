@@ -5,3 +5,25 @@
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 	    vertical-align: middle !important;
 }
+.workshop-pie h2{
+	   color: #383434;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.workshop-pie .pie-button{
+	text-align: center;
+}
+
+
+
+.workshop-pie a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button{
+
+	background-color:#141716!important;
+    color: #e6e6e6;
+}
+
+.workshop-pie a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button:hover{
+	text-decoration: none;
+	}
