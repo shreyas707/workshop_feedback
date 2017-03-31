@@ -17,7 +17,7 @@
       data["Agree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "agree", question.id).count 
       data["Strong Agree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ? ', "strongly-agree", question.id).count 
     %>
-      <%= pie_chart(data) %></td>
+      <%= column_chart(data) %></td>
     </tr>
 
   </tbody>
