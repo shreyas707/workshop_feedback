@@ -12,7 +12,7 @@
       <th class="mdl-data-table__cell--non-numeric">Title</th>
       <th class="mdl-data-table__cell--non-numeric">Start date</th>
       <th class="mdl-data-table__cell--non-numeric">End date</th>
-      <% if current_user.try(:is_admin? || :is_user?) %>
+      <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
         <th class="mdl-data-table__cell--non-numeric">Token</th>
         <th class="mdl-data-table__cell--non-numeric">Allow access</th>
         <th class="mdl-data-table__cell--non-numeric">Show</th>
@@ -28,7 +28,7 @@
         <td class="mdl-data-table__cell--non-numeric"><%= link_to workshop.title, workshop %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= workshop.start_date %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= workshop.end_date %></td>
-        <% if current_user.try(:is_admin? || :is_user?) %>
+        <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
           <td class="mdl-data-table__cell--non-numeric"><%= workshop.token %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= workshop.allow_access %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', workshop, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td>

@@ -19,7 +19,8 @@
   <strong>Department:</strong>
   <%= @user.department_id %>
 </p>
-
+<% if current_user.role == "admin" %>
 <%= link_to 'Edit', edit_user_path(@user.id), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #4527a0" %>
 <%= link_to "Delete", users_path(@user.id), data: {method: :delete, confirm: "Are you sure you want to delete?"}, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b71c1c"  %>
+<% end %>
 <%= link_to 'Back', users_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>

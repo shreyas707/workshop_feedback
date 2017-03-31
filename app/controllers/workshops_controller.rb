@@ -1,10 +1,11 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   # GET /workshops
   # GET /workshops.json
   def index
-    if current_user.try(:is_admin? || :is_user?)
+    if current_user.try(:is_user?) || current_user.try(:is_admin?)
       @workshops = Workshop.all
     else
       @workshops = Workshop.where('allow_access = ?', true)
