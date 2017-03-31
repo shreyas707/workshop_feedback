@@ -6,4 +6,6 @@ class Instructor < ActiveRecord::Base
 	has_many :department_instructors
 	has_many :departments, through: :department_instructors
 
+	validates_presence_of :name, :mobile, :email
+
 end

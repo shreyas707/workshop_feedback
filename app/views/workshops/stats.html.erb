@@ -1,0 +1,38 @@
+<h2>Stats of <%= @workshop.title %></h2>
+
+<% if user_signed_in? && (current_user.is_admin? || current_user.is_user?) %>
+  <% @question_type_1.each do |question| %>
+    <% data = {} %>
+
+    <table class="table">
+  <tbody>
+
+    <tr>
+      <th scope="row">1</th>
+      <td width="40%"><strong><%#= question.order%><%= question.title %></strong></td>
+
+      <td width="60%">
+<% data["Strongly Disagree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "strongly-disagree", question.id).count 
+      data["Disagree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "disagree", question.id).count
+      data["Agree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "agree", question.id).count 
+      data["Strong Agree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ? ', "strongly-agree", question.id).count 
+    %>
+      <%= pie_chart(data) %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+    
+  
+    
+    
+  <% end %>
+<% end %>
+
+<%= link_to "Export to Excel", workshops_stats_path(format: "xls"), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #009688" %>
+<br/><br/>
+
+
+
+

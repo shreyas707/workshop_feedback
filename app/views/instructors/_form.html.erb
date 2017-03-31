@@ -11,34 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :mobile %><br>
-    <%= f.text_field :mobile %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </div>
-  <div class="field">
-    <%= f.label :profile %><br>
-    <%= f.text_field :profile %>
-  </div>
-  <div class="field">
-    <%= f.label :department_id %>
-    <%= f.collection_check_boxes :department_ids, Department.all, :id, :name do |b| %><br/><br/>
-        <%= b.check_box %>
-        <%= b.label %>
-      <% end %>
+  <div class = "text_field">
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :mobile %><br>
+      <%= f.text_field :mobile, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :address %><br>
+      <%= f.text_area :address, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :profile %><br>
+      <%= f.text_field :profile, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :department_id %>
+      <%= f.collection_check_boxes :department_ids, Department.all, :id, :name do |b| %><br/><br/>
+          <%= b.check_box %>
+          <%= b.label %>
+        <% end %>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
   </div>
 <% end %>

@@ -4,7 +4,13 @@ class WorkshopsController < ApplicationController
   # GET /workshops
   # GET /workshops.json
   def index
-    @workshops = Workshop.all
+    if current_user.try(:is_admin? || :is_user?)
+      @workshops = Workshop.all
+    else
+      @workshops = Workshop.where('allow_access = ?', true)
+    end
+    @question_type_1 = Question.where('question_type_id = ?', 1)
+    @question_type_2 = Question.where('question_type_id = ?', 2)
   end
 
   # GET /workshops/1
@@ -29,7 +35,8 @@ class WorkshopsController < ApplicationController
   # POST /workshops.json
   def create
     @workshop = Workshop.new(workshop_params)
-
+        @workshop.user_id = current_user.id
+        @workshop.token = 6.times.map{rand(6)}.join
     respond_to do |format|
       if @workshop.save
         format.html { redirect_to @workshop, notice: 'Workshop was successfully created.' }
@@ -63,6 +70,12 @@ class WorkshopsController < ApplicationController
       format.html { redirect_to workshops_url, notice: 'Workshop was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def stats
+    @workshop = Workshop.find(params[:workshops])
+    @question_type_1 = Question.where('question_type_id = ?', 1)
+    @question_type_2 = Question.where('question_type_id = ?', 2)
   end
 
   private

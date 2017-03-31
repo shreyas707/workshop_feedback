@@ -10,4 +10,6 @@ class Workshop < ActiveRecord::Base
 	has_many :department_workshops
 	has_many :departments, through: :department_workshops
 
+	validates_presence_of :title, :description
+
 end

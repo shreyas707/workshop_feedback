@@ -1,7 +1,10 @@
-<%= form_for(@feedback_form) do |f| %>
+<div class = "container">
+  <h2>Feedback Form</h2>
+
+  <%= form_for([@workshop, @feedback_form]) do |f| %>
   <% if @feedback_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@feedback_form.errors.count, "error") %> prohibited this feedback_form from being saved:</h2>
+      <h2><%= pluralize(@feedback_form.errors.count, "error") %> prohibited this feedback form from being saved:</h2>
 
       <ul>
       <% @feedback_form.errors.full_messages.each do |message| %>
@@ -10,20 +13,60 @@
       </ul>
     </div>
   <% end %>
+  <div class = "text_field">
+    <%= f.hidden_field :workshop_id, value: @workshop.id %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :register_number %><br>
-    <%= f.text_field :register_number %>
-  </div>
-  <div class="field">
-    <%= f.label :workshop %>
-    <%= f.collection_select :workshop_id, Workshop.all, :id, :title, prompt: "Select Workshop" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <label>Name: </label><br/>
+    <%= f.text_field :name, class: "form-control" %><br/><br/>
+
+    <label>Register Number:</label><br/>
+    <%= f.text_field :register_number, class: "form-control" %><br/><br/>
+
+    <label>Token:</label><br/>
+    <%= f.text_field :token, class: "form-control" %></div>
+
+    <br/><br/>
+    <table class="mdl-data-table mdl-js-data-table table-bordered">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">#</th>
+          <th class="mdl-data-table__cell--non-numeric">Question</th>
+          <th class="mdl-data-table__cell--non-numeric">Strongly Disagree</th>
+          <th class="mdl-data-table__cell--non-numeric">Disagree</th>
+          <th class="mdl-data-table__cell--non-numeric">Agree</th>
+          <th class="mdl-data-table__cell--non-numeric">Strongly Agree</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @question_type_1.each do |question| %>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric"><%= question.order %></td>
+            <td class="mdl-data-table__cell--non-numeric">
+            <label>
+            <%= question.title %></td>
+            </label>
+            <%= f.fields_for :answers, @answer do |question_form| %>
+            <td class="mdl-data-table__cell--non-numeric"><%= question_form.radio_button :feedback, "strongly-disagree" %></td>
+            <td class="mdl-data-table__cell--non-numeric"><%= question_form.radio_button :feedback, "disagree" %></td>
+            <td class="mdl-data-table__cell--non-numeric"><%= question_form.radio_button :feedback, "agree" %></td>
+            <td class="mdl-data-table__cell--non-numeric"><%= question_form.radio_button :feedback, "strongly-agree" %></td>
+            <%= question_form.hidden_field :question_id, value: question.id %>
+            <% end %> 
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+      
+    <br/><br/>
+    <% @question_type_2.each do |question| %>
+    <div class="form-group">
+      <label> <%= question.order %>. <%= question.title %> </label>
+      <%= f.fields_for :answers, @answer do |question_form| %>
+        <%= question_form.text_area :feedback, class: "form-control" %>
+        <%= question_form.hidden_field :question_id, value: question.id %><br/><br/>
+      <% end %>
+    </div>
+    <% end %>
+    <%= f.submit 'Submit', class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %><br/><br/>
+  <% end %>
+</div>

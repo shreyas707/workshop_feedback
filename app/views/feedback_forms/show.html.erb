@@ -21,5 +21,7 @@
 <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_feedback_form_path(@feedback_form) %> |
-<%= link_to 'Back', feedback_forms_path %>
+<!--<%#= link_to 'Edit', edit_feedback_form_path(@feedback_form), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #4527a0" %> | -->
+<% if current_user.try(:is_admin? || :is_user?) %>
+	<%= link_to 'Back', feedback_forms_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b0bec5" %>
+<% end %>

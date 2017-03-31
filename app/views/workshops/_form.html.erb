@@ -26,34 +26,26 @@
   <div class="field">
     <%= f.label :end_date %><br>
     <%= f.date_select :end_date %>
-  </div>
- <!-- <div class="field">
-    <%= f.label :token %><br>
-    <%= f.text_field :token %>
-  </div> -->
- <!-- <div class="field">
-    <%#= f.label :user_id %><br>
-    <%#= f.number_field :user_id %>
-  </div> -->
+  </div><br/>
   <div class="field">
-    <%= f.label :department_id %>
+    <label>Select Departments</label>
     <%= f.collection_check_boxes :department_ids, Department.all, :id, :name do |b| %><br/><br/>
       <%= b.check_box %>
       <%= b.label %>
     <% end %>
-  </div>
+  </div><br/>
   <div class="field">
-    <%= f.label :instructor_id %>
+    <label>Select Instructor</label>
     <%= f.collection_check_boxes :instructor_ids, Instructor.all, :id, :name do |b| %><br/><br/>
       <%= b.check_box %>
       <%= b.label %>
     <% end %>
-  </div>
+  </div><br/>
   <div class="field">
     <%= f.label :allow_access %><br>
     <%= f.check_box :allow_access %>
-  </div>
+  </div><br/>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
   </div>
 <% end %>

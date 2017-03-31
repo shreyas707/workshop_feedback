@@ -1,27 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Bnmit</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "https://www.google.com/jsapi" %>
+    <%= csrf_meta_tags %>
 
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<%= yield %>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-</body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.red-blue.min.css">
+    <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </button>
+          <a class="navbar-brand" href="/">BNMIT</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li<% if controller.controller_name == "users" %>
+                          class="active"
+                      <% end %>>
+              <%= link_to "User", users_path %>
+              </li>
+             <!-- <li>
+                  <%#= link_to "Answer", answers_path %>
+              </li> -->
+              <li<% if controller.controller_name == "departments" %>
+                          class="active"
+                      <% end %>>
+                  <%= link_to "Department", departments_path %>
+              </li>
+              <li<% if controller.controller_name == "feedback_forms" %>
+                          class="active"
+                      <% end %>>
+                  <%= link_to "Feedback Form", feedback_forms_path %>
+              </li>
+              <li<% if controller.controller_name == "instructors" %>
+                          class="active"
+                      <% end %>>
+                  <%= link_to "Instructor", instructors_path %>
+              </li>
+              <li<% if controller.controller_name == "questions" %>
+                          class="active"
+                      <% end %>>
+                  <%= link_to "Question", questions_path %>
+              </li>
+              <li<% if controller.controller_name == "question_types" %>
+                          class="active"
+                      <% end %>>
+                  <%= link_to "Question Type", question_types_path %>
+              </li>
+              <li<% if controller.controller_name == "workshops" %>
+                          class="active"
+                      <% end %>>
+                  <%= link_to "Workshop", workshops_path %>
+              </li>
+              <li>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+              </li>
+            <% else %>
+              <li>
+              <%= link_to('Login', new_user_session_path) %>  
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--<p class="notice"><%#= notice %></p> -->
+    <p class="alert"><%= alert %></p>
+
+    <div class = "container"><%= yield %></div>
+
+  </body>
 </html>

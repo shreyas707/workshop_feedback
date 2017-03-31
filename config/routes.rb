@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
   
   devise_for :users
-    
+
+  get 'workshops/stats'
+
   resources :users
   resources :question_types
-  resources :feedback_forms
   resources :answers
   resources :questions
   resources :instructors
-  resources :workshops
+  resources :workshops do 
+    resources :feedback_forms
+  end
+    resources :feedback_forms
+
   resources :departments
 
-  root 'departments#index'
+  root 'workshops#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

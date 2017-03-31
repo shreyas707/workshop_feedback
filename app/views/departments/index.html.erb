@@ -6,25 +6,25 @@
 
 <h1>Listing Departments</h1>
 
-<table border = "1">
+<table class="mdl-data-table mdl-js-data-table table-bordered">
   <thead>
     <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th class="mdl-data-table__cell--non-numeric">#</th>
+      <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <!-- <th class="mdl-data-table__cell--non-numeric">Show</th> -->
+      <th class="mdl-data-table__cell--non-numeric">Edit</th>
+      <th class="mdl-data-table__cell--non-numeric">Destroy</th>
     </tr>
   </thead>
 
   <tbody>
     <% @departments.each_with_index do |department, index| %>
       <tr>
-        <td><%= index + 1 %></td>
-        <td><%= department.name %></td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= index + 1 %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= department.name %></td>
+        <!-- <td class="mdl-data-table__cell--non-numeric"><%#= link_to 'Show', department, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td> -->
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_department_path(department), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ef5350" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <% end %>
 
-<%= link_to 'New Department', new_department_path %>
+<%= link_to 'New Department', new_department_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0"  %>

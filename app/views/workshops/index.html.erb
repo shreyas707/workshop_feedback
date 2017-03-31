@@ -2,16 +2,22 @@
 
 <h1>Listing Workshops</h1>
 
-<table class="mdl-data-table mdl-js-data-table">
+<% if @workshops.empty? %>
+  <p>No workshops found.</p>
+<% else %>
+
+<table class="mdl-data-table mdl-js-data-table table-bordered">
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric">Title</th>
-      <th class="mdl-data-table__cell--non-numeric">Description</th>
       <th class="mdl-data-table__cell--non-numeric">Start date</th>
       <th class="mdl-data-table__cell--non-numeric">End date</th>
       <% if current_user.try(:is_admin? || :is_user?) %>
         <th class="mdl-data-table__cell--non-numeric">Token</th>
         <th class="mdl-data-table__cell--non-numeric">Allow access</th>
+        <th class="mdl-data-table__cell--non-numeric">Show</th>
+        <th class="mdl-data-table__cell--non-numeric">Edit</th>
+        <th class="mdl-data-table__cell--non-numeric">Destroy</th>
       <% end %>
     </tr>
   </thead>
@@ -20,7 +26,6 @@
     <% @workshops.each do |workshop| %>
       <tr>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to workshop.title, workshop %></td>
-        <td class="mdl-data-table__cell--non-numeric"><%= workshop.description %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= workshop.start_date %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= workshop.end_date %></td>
         <% if current_user.try(:is_admin? || :is_user?) %>
@@ -34,7 +39,7 @@
     <% end %>
   </tbody>
 </table>
-
+<% end %>
 <br>
 
 <% if current_user.try(:is_admin? || :is_user?) %>

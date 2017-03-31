@@ -28,9 +28,9 @@
 <p>
   <strong>Department:</strong>
   <% @instructor.departments.each do |department| %>
-    <%= department.name %>
+    <%= department.name %>,
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_instructor_path(@instructor) %> |
-<%= link_to 'Back', instructors_path %>
+<%= link_to 'Edit', edit_instructor_path(@instructor), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %>
+<%= link_to 'Back', instructors_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b0bec5" %>

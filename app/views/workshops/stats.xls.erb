@@ -1,0 +1,43 @@
+<table border = "1">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Token</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @workshops.each do |workshop|%>
+		<tr>
+			<td> <%= workshop.title %></td>
+			<td> <%= workshop.start_date %> </td>
+			<td> <%= workshop.end_date %></td>
+			<td> <%= workshop.token %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<table border = "1">
+	<thead>
+		<tr>
+			<th>Student Name</th>
+			<th>Register Number</th>
+			<% Question.all.each do |question| %>
+				<th><%= question.title %></th>
+			<% end %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<%# Answer.where do |answer| %>
+				<td><%#= answer.feedback_form.name %></td>
+				<td><%#= answer.feedback_form.register_number %></td>
+				<td><%#= answer.feedback %></td>
+			<%# end %>
+		</tr>
+	</tbody>
+</table>

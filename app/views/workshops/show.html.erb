@@ -1,2 +1,10 @@
 <%= render 'workshop_details' %>
+<br/>
+<div class = "container">
+  <% if user_signed_in? && (current_user.is_admin? || current_user.is_user?) %>
+    <%= link_to "Show Stats", workshops_stats_path(:workshops => @workshop.id), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
+  <% end %>
+</div>
 <%= render '/feedback_forms/form' %>
+
+<br/><br/>

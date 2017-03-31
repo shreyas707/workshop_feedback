@@ -2,8 +2,6 @@ class Department < ActiveRecord::Base
 
 	has_many :users
 
-	has_many :users
-
 	has_many :department_instructors
 	has_many :instructors, through: :department_instructors
 

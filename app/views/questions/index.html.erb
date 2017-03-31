@@ -2,25 +2,26 @@
 
 <h1>Listing Questions</h1>
 
-<table>
+<table class="mdl-data-table mdl-js-data-table table-bordered">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Order</th>
-      <th>Question type</th>
-      <th colspan="3"></th>
+
+      <th class="mdl-data-table__cell--non-numeric">#</th>
+      <th class="mdl-data-table__cell--non-numeric">Title</th>
+      <th class="mdl-data-table__cell--non-numeric">Show</th>
+      <th class="mdl-data-table__cell--non-numeric">Edit</th>
+      <th class="mdl-data-table__cell--non-numeric">Destroy</th>
     </tr>
   </thead>
 
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.title %></td>
-        <td><%= question.order %></td>
-        <td><%= question.question_type_id %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= question.order %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= question.title %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', question, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_question_path(question), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ef5350"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +29,5 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'New Question', new_question_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0"  %>
+<br/><br/>
