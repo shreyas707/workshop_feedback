@@ -17,6 +17,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops/1
   # GET /workshops/1.json
   def show
+    @workshop = Workshop.find(params[:id])
     @feedback_form = FeedbackForm.new
     @question_type_1 = Question.where('question_type_id = ?', 1)
     @question_type_2 = Question.where('question_type_id = ?', 2)

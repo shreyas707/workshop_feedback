@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'workshops/stats'
-
+  
   resources :users
   resources :question_types
   resources :answers
