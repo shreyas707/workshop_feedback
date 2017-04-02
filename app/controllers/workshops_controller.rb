@@ -8,7 +8,7 @@ class WorkshopsController < ApplicationController
     if current_user.try(:is_user?) || current_user.try(:is_admin?)
       @workshops = Workshop.all
     else
-      @workshops = Workshop.where('allow_access = ?', true)
+      @workshops = Workshop.where('allow_access = ? AND complete = ?', true, false)
     end
     @question_type_1 = Question.where('question_type_id = ?', 1)
     @question_type_2 = Question.where('question_type_id = ?', 2)
@@ -88,6 +88,6 @@ class WorkshopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workshop_params
-      params.require(:workshop).permit(:title, :description, :start_date, :end_date, :token, :user_id, :department_id, :allow_access, instructor_ids: [], department_ids: [])
+      params.require(:workshop).permit(:title, :description, :start_date, :end_date, :token, :user_id, :department_id, :allow_access, :complete, instructor_ids: [], department_ids: [])
     end
 end

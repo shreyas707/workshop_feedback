@@ -41,6 +41,11 @@
     <strong>Token:</strong>
     <%= @workshop.token %>
   </p>
+
+  <p>
+    <strong>Complete?</strong>
+    <%= @workshop.complete %>
+  </p>
 <% end %>
 
 <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>

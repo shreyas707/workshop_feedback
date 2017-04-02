@@ -15,6 +15,7 @@
       <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
         <th class="mdl-data-table__cell--non-numeric">Token</th>
         <th class="mdl-data-table__cell--non-numeric">Allow access</th>
+        <th class="mdl-data-table__cell--non-numeric">Complete</th>
         <th class="mdl-data-table__cell--non-numeric">Show</th>
         <th class="mdl-data-table__cell--non-numeric">Edit</th>
         <th class="mdl-data-table__cell--non-numeric">Destroy</th>
@@ -31,6 +32,7 @@
         <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
           <td class="mdl-data-table__cell--non-numeric"><%= workshop.token %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= workshop.allow_access %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= workshop.complete %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', workshop, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_workshop_path(workshop), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' }, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ef5350" %></td>
