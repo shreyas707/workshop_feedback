@@ -17,11 +17,16 @@ class WorkshopsController < ApplicationController
   # GET /workshops/1
   # GET /workshops/1.json
   def show
-    @workshop = Workshop.find(params[:id])
-    @feedback_form = FeedbackForm.new
-    @question_type_1 = Question.where('question_type_id = ?', 1)
-    @question_type_2 = Question.where('question_type_id = ?', 2)
-    @answer = Answer.new
+    @check_workshop = Workshop.find(params[:id])
+    if (@check_workshop.allow_access == true || current_user.try(:is_user?) || current_user.try(:is_admin?))
+      @workshop = Workshop.find(params[:id])
+      @feedback_form = FeedbackForm.new
+      @question_type_1 = Question.where('question_type_id = ?', 1)
+      @question_type_2 = Question.where('question_type_id = ?', 2)
+      @answer = Answer.new
+    else
+      redirect_to ('/404')
+    end
   end
 
   # GET /workshops/new

@@ -27,6 +27,7 @@ class Workshop < ActiveRecord::Base
 			self.allow_access = false
 		end
 	end
+
 end
 
 	# def is_complete?
