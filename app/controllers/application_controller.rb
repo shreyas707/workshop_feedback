@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
     	end
   end
 
-   rescue_from Exception do
-     redirect_to root_path, alert: "Sorry something went wrong"
-   end
+   # rescue_from Exception do
+   #   redirect_to root_path, alert: "Sorry something went wrong"
+   # end
 
 end
