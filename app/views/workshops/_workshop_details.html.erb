@@ -47,11 +47,10 @@
     <%= @workshop.complete %>
   </p>
 <% end %>
-
-<% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
-  <%= link_to 'Edit', edit_workshop_path(@workshop), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %>
-  <%= link_to 'Back', workshops_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b0bec5" %>
-<% end %>
-
-<br/>
+<div class = "hidden-print">
+  <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
+    <%= link_to 'Edit', edit_workshop_path(@workshop), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %>
+    <%= link_to 'Back', workshops_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b0bec5" %>
+  <% end %>
+</div>
 </div>

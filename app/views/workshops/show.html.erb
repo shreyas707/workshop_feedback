@@ -1,17 +1,92 @@
 <%= render 'workshop_details' %>
 <br/>
-<div class = "container">
-  <% if user_signed_in? && (current_user.is_admin? || current_user.is_user?) %>
-    <%= link_to "Show Stats", workshops_stats_path(:workshops => @workshop.id), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
-  <br/><br/>
 
-  <div class="pie-button">
-  	<%= link_to "Export to Excel", workshops_stats_path(:workshops => @workshop.id, format: "xls"), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #009688" %>
-	<% end %><br/><br/>
-  </div>
+<% if user_signed_in? %>
+	<div class = "container hidden-print pie-button">
+		<%= link_to "Export to Excel", workshops_stats_path(:workshops => @workshop.id, format: "xls"), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #009688" %>
+	</div>
+	<br/><br/>
 
-</div>
+	<section class="workshop-pie">
+	  	<h2>Stats of the workshop</h2>
+		<% @question_type_1.each do |question| %>
+		  <% data = {} %>
+		  <table class="table">
+		    <tbody>
+		      <tr>
+		        <td width="40%"><strong><%= question.title %></strong></td>
+		        <td width="60%">
+		          <% data["Strongly Disagree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "strongly-disagree", question.id).count 
+		             data["Disagree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "disagree", question.id).count
+		             data["Agree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "agree", question.id).count 
+		             data["Strong Agree"] = Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ? ', "strongly-agree", question.id).count %>
+		          <%= column_chart(data) %>
+		        </td>
+		      </tr>
+		    </tbody>
+		  </table>
+		<% end %>
+	</section>
 
-<%= render '/feedback_forms/form' %>
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th>Student Name</th>
+	      <% Question.all.each do |question| %>
+	        <th><%= question.title %></th>
+	      <% end %>
+	    </tr>
+	  </thead>
 
+	  <tbody>
+	    <% @workshop.feedback_forms.each do |form| %>
+	    <tr>
+	      <td><%= form.name %></td>
+	      <% form.answers.each do |answer| %>
+	        <td><%= answer.feedback %></td>
+	      <% end %>
+	    </tr> 
+	    <% end %>
+	  </tbody>
+	</table>
+
+	<table class = "table table-bordered">
+		<thead><tr>
+			<td></td>
+			<% Question.where("question_type_id = ?", 1).each do |question| %>
+				<td><b><%= question.title %></b></td>
+			<% end %>
+		</tr></thead>
+
+		<tbody>
+			<tr>
+				<td>Strongly Disagree</td>
+				<% Question.where("question_type_id = ?", 1).each do |question| %>
+					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "strongly-disagree", question.id).count %></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td>Disagree</td>
+				<% Question.where("question_type_id = ?", 1).each do |question| %>
+					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "disagree", question.id).count %></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td>Agree</td>
+				<% Question.where("question_type_id = ?", 1).each do |question| %>
+					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "agree", question.id).count %></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td>Strongly Agree</td>
+				<% Question.where("question_type_id = ?", 1).each do |question| %>
+					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "strongly-agree", question.id).count %></td>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+
+<% else %>
+	<%= render '/feedback_forms/form' %>
+<% end %>
 <br/><br/>

@@ -11,7 +11,9 @@ class Workshop < ActiveRecord::Base
 	has_many :departments, through: :department_workshops
 
 	validates_presence_of :title, :description
-	validate :check_date_validity, :is_complete?
+	validate :check_date_validity
+
+	after_save :is_complete?
 
 	def check_date_validity
 		if self.end_date < self.start_date
@@ -23,17 +25,8 @@ class Workshop < ActiveRecord::Base
 		if self.end_date < Date.today
 			self.complete = true
 		end
-		if self. complete == true
+		if self.complete == true
 			self.allow_access = false
 		end
 	end
-
 end
-
-	# def is_complete?
-	# 	Workshop.all.each do |workshop|
-	# 		if workshop.end_date < Date.today
-	# 			workshop.complete = true
-	# 		end
-	# 	end
-	# end

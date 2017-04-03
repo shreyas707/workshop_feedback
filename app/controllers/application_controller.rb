@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
-  def render_404
-    redirect_to ('/404')
-  end
-
   protected
   def authenticate_user!
     	if user_signed_in?
@@ -17,4 +13,9 @@ class ApplicationController < ActionController::Base
       		redirect_to new_user_session_path, :notice => 'You need to login to access the page.'
     	end
   end
+
+  def render_404
+    redirect_to ('/public/404')
+  end
+
 end
