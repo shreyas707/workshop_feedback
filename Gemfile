@@ -2,12 +2,14 @@ source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.8'
 gem 'chartkick'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
 end
+
+gem 'rename'
 
 group :production do
   gem 'pg'
