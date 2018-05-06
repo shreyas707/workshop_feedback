@@ -7,14 +7,14 @@ class FeedbackForm < ActiveRecord::Base
 
 	validates_presence_of :name, :register_number
 
-	validate :check_token
+	# validate :check_token
 
-	private 
+	# private 
 
-	def check_token
-		if !(self.token == self.workshop.token) 
-			errors.add(:token, "doesn't match. Enter the valid token")
-		end
-	end
+	# def check_token
+	# 	if !(self.token == self.workshop.token) 
+	# 		errors.add(:token, "doesn't match. Enter the valid token")
+	# 	end
+	# end
 
 end

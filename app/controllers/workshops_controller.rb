@@ -43,7 +43,7 @@ class WorkshopsController < ApplicationController
   def create
     @workshop = Workshop.new(workshop_params)
         @workshop.user_id = current_user.id
-        @workshop.token = 6.times.map{rand(6)}.join
+        # @workshop.token = 6.times.map{rand(6)}.join
     respond_to do |format|
       if @workshop.save
         format.html { redirect_to @workshop, notice: 'Workshop was successfully created.' }
