@@ -1,7 +1,7 @@
 class FeedbackFormsController < ApplicationController
   before_action :set_feedback_form, only: [:show, :edit, :update, :destroy]
 
-  before_filter :authenticate_user!, except: [:new, :create, :show]
+  before_filter :authenticate_user!
   # GET /feedback_forms
   # GET /feedback_forms.json
   def index

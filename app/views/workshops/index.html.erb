@@ -12,7 +12,7 @@
       <th class="mdl-data-table__cell--non-numeric">Title</th>
       <th class="mdl-data-table__cell--non-numeric">Start date</th>
       <th class="mdl-data-table__cell--non-numeric">End date</th>
-      <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
+      <% if current_user.try(:is_staff?) || current_user.try(:is_admin?) %>
         <!-- <th class="mdl-data-table__cell--non-numeric">Token</th> -->
         <th class="mdl-data-table__cell--non-numeric">Allow access</th>
         <th class="mdl-data-table__cell--non-numeric">Complete</th>
@@ -29,7 +29,7 @@
         <td class="mdl-data-table__cell--non-numeric"><%= link_to workshop.title, workshop %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= workshop.start_date %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= workshop.end_date %></td>
-        <% if current_user.try(:is_user?) || current_user.try(:is_admin?) %>
+        <% if current_user.try(:is_staff?) || current_user.try(:is_admin?) %>
           <!-- <td class="mdl-data-table__cell--non-numeric"><%#= workshop.token %></td> -->
           <td class="mdl-data-table__cell--non-numeric"><%= workshop.allow_access %></td>
           <td class="mdl-data-table__cell--non-numeric"><%= workshop.complete %></td>
@@ -44,6 +44,6 @@
 <% end %>
 <br>
 
-<% if current_user.try(:is_admin? || :is_user?) %>
+<% if current_user.try(:is_admin? || :is_staff?) %>
   <%= link_to 'New Workshop', new_workshop_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
 <% end %>

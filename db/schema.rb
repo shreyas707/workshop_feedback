@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504142235) do
+ActiveRecord::Schema.define(version: 20180506180437) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "feedback"
@@ -42,11 +42,10 @@ ActiveRecord::Schema.define(version: 20180504142235) do
   end
 
   create_table "feedback_forms", force: :cascade do |t|
-    t.string   "name"
-    t.string   "register_number"
     t.integer  "workshop_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -67,7 +66,6 @@ ActiveRecord::Schema.define(version: 20180504142235) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
-    t.integer  "order"
     t.integer  "question_type_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -106,7 +104,6 @@ ActiveRecord::Schema.define(version: 20180504142235) do
     t.text     "description"
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "token"
     t.integer  "user_id"
     t.boolean  "allow_access"
     t.datetime "created_at",   null: false

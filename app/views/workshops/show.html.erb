@@ -1,7 +1,7 @@
 <%= render 'workshop_details' %>
 <br/>
 
-<% if user_signed_in? %>
+<% if current_user.is_admin? || current_user.is_staff? %>
 	<div class = "container hidden-print pie-button">
 		<%= link_to "Export to Excel", workshops_stats_path(:workshops => @workshop.id, format: "xls"), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #009688" %>
 	</div>
@@ -41,7 +41,7 @@
 	  <tbody>
 	    <% @workshop.feedback_forms.each do |form| %>
 	    <tr>
-	      <td><%= form.name %></td>
+	      <!-- <td><%#= form.name %></td> -->
 	      <% form.answers.each do |answer| %>
 	        <td><%= answer.feedback %></td>
 	      <% end %>
@@ -86,7 +86,7 @@
 		</tbody>
 	</table>
 
-<% else %>
+<% elsif current_user.is_student? %>
 	<%= render '/feedback_forms/form' %>
 <% end %>
 <br/><br/>

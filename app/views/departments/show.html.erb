@@ -5,5 +5,12 @@
   <%= @department.name %>
 </p>
 
+<p>
+	<strong>Number of Workshops: <%= @department.workshops.count %></strong><br/>
+	<% @department.workshops.each do |workshop| %>
+		<%= workshop.title %><br/>
+	<% end %>
+</p>
+
 <%= link_to 'Edit', edit_department_path(@department), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %>
 <%= link_to 'Back', departments_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #b0bec5" %>

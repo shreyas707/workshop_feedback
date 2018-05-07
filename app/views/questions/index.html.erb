@@ -6,7 +6,7 @@
   <thead>
     <tr>
 
-      <th class="mdl-data-table__cell--non-numeric">#</th>
+      <!-- <th class="mdl-data-table__cell--non-numeric">#</th> -->
       <th class="mdl-data-table__cell--non-numeric">Title</th>
       <th class="mdl-data-table__cell--non-numeric">Show</th>
       <th class="mdl-data-table__cell--non-numeric">Edit</th>
@@ -17,7 +17,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td class="mdl-data-table__cell--non-numeric"><%= question.order %></td>
+        <!-- <td class="mdl-data-table__cell--non-numeric"><%#= question.order %></td> -->
         <td class="mdl-data-table__cell--non-numeric"><%= question.title %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', question, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_question_path(question), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %></td>

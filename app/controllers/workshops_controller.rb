@@ -1,14 +1,14 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!
 
   # GET /workshops
   # GET /workshops.json
   def index
-    if current_user.try(:is_user?) || current_user.try(:is_admin?)
+    if current_user.try(:is_staff?) || current_user.try(:is_admin?)
       @workshops = Workshop.all
     else
-      @workshops = Workshop.where('allow_access = ? AND complete = ?', true, false)
+      @workshops = Workshop.where('allow_access = ?', true)
     end
     @question_type_1 = Question.where('question_type_id = ?', 1)
     @question_type_2 = Question.where('question_type_id = ?', 2)
@@ -18,7 +18,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops/1.json
   def show
     @check_workshop = Workshop.find(params[:id])
-    if (@check_workshop.allow_access == true || current_user.try(:is_user?) || current_user.try(:is_admin?))
+    if (@check_workshop.allow_access == true || current_user.try(:is_staff?) || current_user.try(:is_admin?))
       @workshop = Workshop.find(params[:id])
       @feedback_form = FeedbackForm.new
       @question_type_1 = Question.where('question_type_id = ?', 1)

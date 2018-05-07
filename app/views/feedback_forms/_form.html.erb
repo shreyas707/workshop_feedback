@@ -16,11 +16,11 @@
   <div class = "text_field">
     <%= f.hidden_field :workshop_id, value: @workshop.id %>
 
-    <label>Name: </label><br/>
-    <%= f.text_field :name, class: "form-control" %><br/><br/>
+    <!-- <label>Name: </label><br/> -->
+    <!-- <%#= f.text_field :name, class: "form-control" %><br/><br/> -->
 
-    <label>Register Number:</label><br/>
-    <%= f.text_field :register_number, class: "form-control" %><br/><br/>
+    <!-- <label>Register Number:</label><br/> -->
+    <!-- <%#= f.text_field :register_number, class: "form-control" %><br/><br/> -->
 
     <!-- <label>Token:</label><br/> -->
     <%#= f.text_field :token, class: "form-control" %></div>
@@ -29,7 +29,7 @@
     <table class="mdl-data-table mdl-js-data-table table-bordered">
       <thead>
         <tr>
-          <th class="mdl-data-table__cell--non-numeric">#</th>
+          <!-- <th class="mdl-data-table__cell--non-numeric">#</th> -->
           <th class="mdl-data-table__cell--non-numeric">Question</th>
           <th class="mdl-data-table__cell--non-numeric">Strongly Disagree</th>
           <th class="mdl-data-table__cell--non-numeric">Disagree</th>
@@ -38,9 +38,9 @@
         </tr>
       </thead>
       <tbody>
-        <% @question_type_1.each do |question| %>
+        <% @question_type_2.each do |question| %>
           <tr>
-            <td class="mdl-data-table__cell--non-numeric"><%= question.order %></td>
+            <!-- <td class="mdl-data-table__cell--non-numeric"><%#= question.order %></td> -->
             <td class="mdl-data-table__cell--non-numeric">
             <label>
             <%= question.title %></td>
@@ -58,9 +58,9 @@
     </table>
       
     <br/><br/>
-    <% @question_type_2.each do |question| %>
+    <% @question_type_1.each do |question| %>
     <div class="form-group">
-      <label> <%= question.order %>. <%= question.title %> </label>
+      <label> <%#= question.order %> <%= question.title %> </label>
       <%= f.fields_for :answers, @answer do |question_form| %>
         <%= question_form.text_area :feedback, class: "form-control" %>
         <%= question_form.hidden_field :question_id, value: question.id %><br/><br/>

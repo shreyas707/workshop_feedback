@@ -8,14 +8,19 @@ class User < ActiveRecord::Base
     return true if self.role == "admin"
   end
 
-  def is_user?
-  	return true if self.role == "user"
+  def is_staff?
+  	return true if self.role == "staff"
+  end
+
+  def is_student?
+    return true if self.role == "student"
   end
 
   has_many :workshops
-
+  has_many :feedback_forms
+  
   belongs_to :department
 
-  validates_presence_of :username, :email, :password, :password_confirmation, :role, :department_id
+  validates_presence_of :username, :email, :password, :password_confirmation, :role
 
 end

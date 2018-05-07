@@ -36,39 +36,41 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
-              <li<% if controller.controller_name == "users" %>
-                          class="active"
-                      <% end %>>
-              <%= link_to "User", users_path %>
-              </li>
-             <!-- <li>
-                  <%#= link_to "Answer", answers_path %>
-              </li> -->
-              <li<% if controller.controller_name == "departments" %>
-                          class="active"
-                      <% end %>>
-                  <%= link_to "Department", departments_path %>
-              </li>
-              <li<% if controller.controller_name == "feedback_forms" %>
-                          class="active"
-                      <% end %>>
-                  <%= link_to "Feedback Form", feedback_forms_path %>
-              </li>
-              <li<% if controller.controller_name == "instructors" %>
-                          class="active"
-                      <% end %>>
-                  <%= link_to "Instructor", instructors_path %>
-              </li>
-              <li<% if controller.controller_name == "questions" %>
-                          class="active"
-                      <% end %>>
-                  <%= link_to "Question", questions_path %>
-              </li>
-              <li<% if controller.controller_name == "question_types" %>
-                          class="active"
-                      <% end %>>
-                  <%= link_to "Question Type", question_types_path %>
-              </li>
+              <% if current_user.is_admin? || current_user.is_staff? %>
+                <li<% if controller.controller_name == "users" %>
+                            class="active"
+                        <% end %>>
+                <%= link_to "User", users_path %>
+                </li>
+               <!-- <li>
+                    <%#= link_to "Answer", answers_path %>
+                </li> -->
+                <li<% if controller.controller_name == "departments" %>
+                            class="active"
+                        <% end %>>
+                    <%= link_to "Department", departments_path %>
+                </li>
+                <li<% if controller.controller_name == "feedback_forms" %>
+                            class="active"
+                        <% end %>>
+                    <%= link_to "Feedback Form", feedback_forms_path %>
+                </li>
+                <li<% if controller.controller_name == "instructors" %>
+                            class="active"
+                        <% end %>>
+                    <%= link_to "Instructor", instructors_path %>
+                </li>
+                <li<% if controller.controller_name == "questions" %>
+                            class="active"
+                        <% end %>>
+                    <%= link_to "Question", questions_path %>
+                </li>
+                <li<% if controller.controller_name == "question_types" %>
+                            class="active"
+                        <% end %>>
+                    <%= link_to "Question Type", question_types_path %>
+                </li>
+              <% end %>
               <li<% if controller.controller_name == "workshops" %>
                           class="active"
                       <% end %>>

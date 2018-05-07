@@ -1,11 +1,12 @@
 class FeedbackForm < ActiveRecord::Base
 
 	belongs_to :workshop
+	belongs_to :user
 	has_many :answers
 
 	accepts_nested_attributes_for :answers
 
-	validates_presence_of :name, :register_number
+	# validates_presence_of :name, :register_number
 
 	# validate :check_token
 

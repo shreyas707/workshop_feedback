@@ -11,7 +11,7 @@
     <tr>
       <th class="mdl-data-table__cell--non-numeric">#</th>
       <th class="mdl-data-table__cell--non-numeric">Name</th>
-      <!-- <th class="mdl-data-table__cell--non-numeric">Show</th> -->
+      <th class="mdl-data-table__cell--non-numeric">Show</th>
       <th class="mdl-data-table__cell--non-numeric">Edit</th>
       <th class="mdl-data-table__cell--non-numeric">Destroy</th>
     </tr>
@@ -22,7 +22,7 @@
       <tr>
         <td class="mdl-data-table__cell--non-numeric"><%= index + 1 %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= department.name %></td>
-        <!-- <td class="mdl-data-table__cell--non-numeric"><%#= link_to 'Show', department, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td> -->
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', department, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #a5d6a7" %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_department_path(department), class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ffab91" %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #ef5350" %></td>
       </tr>
