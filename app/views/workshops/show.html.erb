@@ -41,7 +41,7 @@
 	  <tbody>
 	    <% @workshop.feedback_forms.each do |form| %>
 	    <tr>
-	      <!-- <td><%#= form.name %></td> -->
+	      <td><%= form.user.username %></td>
 	      <% form.answers.each do |answer| %>
 	        <td><%= answer.feedback %></td>
 	      <% end %>
@@ -53,7 +53,7 @@
 	<table class = "table table-bordered">
 		<thead><tr>
 			<td></td>
-			<% Question.where("question_type_id = ?", 1).each do |question| %>
+			<% Question.where("question_type_id = ?", 2).each do |question| %>
 				<td><b><%= question.title %></b></td>
 			<% end %>
 		</tr></thead>
@@ -61,25 +61,25 @@
 		<tbody>
 			<tr>
 				<td>Strongly Disagree</td>
-				<% Question.where("question_type_id = ?", 1).each do |question| %>
+				<% Question.where("question_type_id = ?", 2).each do |question| %>
 					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "strongly-disagree", question.id).count %></td>
 				<% end %>
 			</tr>
 			<tr>
 				<td>Disagree</td>
-				<% Question.where("question_type_id = ?", 1).each do |question| %>
+				<% Question.where("question_type_id = ?", 2).each do |question| %>
 					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "disagree", question.id).count %></td>
 				<% end %>
 			</tr>
 			<tr>
 				<td>Agree</td>
-				<% Question.where("question_type_id = ?", 1).each do |question| %>
+				<% Question.where("question_type_id = ?", 2).each do |question| %>
 					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "agree", question.id).count %></td>
 				<% end %>
 			</tr>
 			<tr>
 				<td>Strongly Agree</td>
-				<% Question.where("question_type_id = ?", 1).each do |question| %>
+				<% Question.where("question_type_id = ?", 2).each do |question| %>
 					<td><%= Answer.where(feedback_form_id: @workshop.feedback_form_ids).where('feedback = ? AND question_id = ?', "strongly-agree", question.id).count %></td>
 				<% end %>
 			</tr>

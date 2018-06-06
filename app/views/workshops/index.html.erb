@@ -44,6 +44,6 @@
 <% end %>
 <br>
 
-<% if current_user.try(:is_admin? || :is_staff?) %>
+<% if current_user.try(:is_admin?) || current_user.try(:is_staff?) %>
   <%= link_to 'New Workshop', new_workshop_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button", style:"background-color: #e0e0e0" %>
 <% end %>

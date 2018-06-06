@@ -30,9 +30,10 @@ class FeedbackFormsController < ApplicationController
     @question_type_1 = Question.where('question_type_id = ?', 1)
     @question_type_2 = Question.where('question_type_id = ?', 2)
     @answer = Answer.new
+    @feedback_form.user_id = current_user.id
     respond_to do |format|
       if @feedback_form.save
-        format.html { redirect_to @feedback_form, notice: 'Feedback form was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Feedback form was successfully created.' }
         format.json { render :show, status: :created, location: @feedback_form }
       else
         format.html { render :new }

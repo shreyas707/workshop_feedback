@@ -4,7 +4,7 @@
       <th>Title</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Token</th>
+      <!-- <th>Token</th> -->
     </tr>
   </thead>
 
@@ -13,7 +13,7 @@
       <td> <%= @workshop.title %> </td>
       <td> <%= @workshop.start_date %> </td>
       <td> <%= @workshop.end_date %> </td>
-      <td> <%= @workshop.token %> </td>
+      <!-- <td> <%#= @workshop.token %> </td> -->
     </tr>
   </tbody>
 </table>
@@ -31,7 +31,7 @@
   <tbody>
     <% @workshop.feedback_forms.each do |form| %>
     <tr>
-      <td><%= form.name %></td>
+      <td><%= form.user.username %></td>
       <% form.answers.each do |answer| %>
         <td><%= answer.feedback %></td>
       <% end %>

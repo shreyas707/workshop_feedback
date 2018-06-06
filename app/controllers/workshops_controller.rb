@@ -5,13 +5,15 @@ class WorkshopsController < ApplicationController
   # GET /workshops
   # GET /workshops.json
   def index
-    if current_user.try(:is_staff?) || current_user.try(:is_admin?)
+    if current_user.try(:is_admin?)
       @workshops = Workshop.all
+    elsif current_user.try(:is_staff?)
+      @workshops = current_user.department.workshops
     else
-      @workshops = Workshop.where('allow_access = ?', true)
+      @workshops = Workshop.where(allow_access: true, id: DepartmentWorkshop.where(department_id: current_user.department_id).pluck(:workshop_id))
     end
-    @question_type_1 = Question.where('question_type_id = ?', 1)
-    @question_type_2 = Question.where('question_type_id = ?', 2)
+    @question_type_1 = Question.where('question_type_id = ?', 2)
+    @question_type_2 = Question.where('question_type_id = ?', 1)
   end
 
   # GET /workshops/1
@@ -21,8 +23,8 @@ class WorkshopsController < ApplicationController
     if (@check_workshop.allow_access == true || current_user.try(:is_staff?) || current_user.try(:is_admin?))
       @workshop = Workshop.find(params[:id])
       @feedback_form = FeedbackForm.new
-      @question_type_1 = Question.where('question_type_id = ?', 1)
-      @question_type_2 = Question.where('question_type_id = ?', 2)
+      @question_type_1 = Question.where('question_type_id = ?', 2)
+      @question_type_2 = Question.where('question_type_id = ?', 1)
       @answer = Answer.new
     else
       redirect_to ('/404')

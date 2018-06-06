@@ -50,11 +50,11 @@
                         <% end %>>
                     <%= link_to "Department", departments_path %>
                 </li>
-                <li<% if controller.controller_name == "feedback_forms" %>
+<!--                 <li<%# if controller.controller_name == "feedback_forms" %>
                             class="active"
-                        <% end %>>
-                    <%= link_to "Feedback Form", feedback_forms_path %>
-                </li>
+                        <%# end %>>
+                    <%#= link_to "Feedback Form", feedback_forms_path %>
+                </li> -->
                 <li<% if controller.controller_name == "instructors" %>
                             class="active"
                         <% end %>>
@@ -65,11 +65,11 @@
                         <% end %>>
                     <%= link_to "Question", questions_path %>
                 </li>
-                <li<% if controller.controller_name == "question_types" %>
+<!--                 <li<%# if controller.controller_name == "question_types" %>
                             class="active"
-                        <% end %>>
-                    <%= link_to "Question Type", question_types_path %>
-                </li>
+                        <%# end %>>
+                    <%#= link_to "Question Type", question_types_path %>
+                </li> -->
               <% end %>
               <li<% if controller.controller_name == "workshops" %>
                           class="active"

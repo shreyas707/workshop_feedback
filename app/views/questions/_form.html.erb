@@ -15,10 +15,10 @@
       <%= f.label :title %><br>
       <%= f.text_field :title, class: "form-control" %>
     </div>
-    <div class="field">
-      <%= f.label :order %><br>
-      <%= f.number_field :order, class: "form-control" %>
-    </div>
+<!--     <div class="field">
+      <%#= f.label :order %><br>
+      <%#= f.number_field :order, class: "form-control" %>
+    </div> -->
     <div class="field">
       <%= f.label :question_type %>
       <%= f.collection_select :question_type_id, QuestionType.all, :id, :name, prompt: "Select Question Type" %>
